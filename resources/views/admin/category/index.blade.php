@@ -1,7 +1,7 @@
 @extends('admin.layouts.master')
 
 @section('title')
-    || My Documents
+    || Category
 @endsection
 
 @section('content')

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserCategoryController extends Controller
 {
@@ -35,7 +36,8 @@ class UserCategoryController extends Controller
         ]);
 
         Category::create([
-            'name' => $request->name
+            'name' => $request->name,
+            'user_id' => Auth::user()->id
         ]);
         toastr()->success('Category Created Successfully');
         return redirect()->route('user.category.index');
@@ -58,6 +60,12 @@ class UserCategoryController extends Controller
     {
 
         $category = Category::findOrFail($id);
+
+        if ($category->user_id !== Auth::user()->id) {
+            toastr()->error('Unauthorized');
+            return redirect()->back();
+        }
+
         return view('user.category.edit', compact('category'));
     }
 
@@ -72,7 +80,11 @@ class UserCategoryController extends Controller
         ]);
     
         $category = Category::findOrFail($id);
-    
+
+        if ($category->user_id !== Auth::user()->id) {
+            toastr()->error('Unauthorized');
+            return redirect()->back();
+        }
 
         $category->update([
             'name' => $request->name
@@ -90,6 +102,12 @@ class UserCategoryController extends Controller
     public function destroy(string $id)
     {
         $category = Category::findOrFail($id);
+        
+        if ($category->user_id !== Auth::user()->id) {
+            toastr()->error('Unauthorized');
+            return redirect()->back();
+        }
+
         $category->delete();
 
         toastr()->success('Category Deleted Successfully');

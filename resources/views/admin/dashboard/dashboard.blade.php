@@ -41,6 +41,21 @@
                                     </a>
                                 </div>
 
+                                <div class="col-xl-4 col-6 col-md-4">
+                                    <a class="wsus__dashboard_item blue" href="javascript:;">
+                                        <i class="fas fa-star"></i>
+                                        <p>Total Public Post</p>
+                                        <h5 class="text-light">{{ $totalpost }}</h5>
+                                    </a>
+                                </div>
+
+                                <div class="col-xl-4 col-6 col-md-4">
+                                    <a class="wsus__dashboard_item blue" href="javascript:;">
+                                        <i class="fas fa-star"></i>
+                                        <p>Post Request</p>
+                                        <h5 class="text-light">{{ $postrequest }}</h5>
+                                    </a>
+                                </div>
 
 
                             </div>
