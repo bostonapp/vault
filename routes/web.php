@@ -7,14 +7,12 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserCategoryController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\UserDocumentController;
-use App\Models\Documentation;
 use Illuminate\Support\Facades\Route;
 
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
-
-Route::get('public/documents', [HomeController::class, 'PublicDocument'])->name('public.document');
-Route::get('public/documents/details/{id}', [HomeController::class, 'PublicDocumentDetail'])->name('public.document.detail');
+Route::get('/public/documents', [HomeController::class, 'publicDocument'])->name('public.document');
+Route::get('/public/documents/details/{id}', [HomeController::class, 'publicDocumentDetail'])->name('public.document.detail');
 
 
 

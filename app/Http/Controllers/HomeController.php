@@ -15,7 +15,7 @@ class HomeController extends Controller
     }
 
 
-    public function PublicDocument(Request $request)
+    public function publicDocument(Request $request)
     {
         $search = $request->search;
 
@@ -60,12 +60,12 @@ class HomeController extends Controller
             $query->where('status', 'public ')->where('is_approved', 'approved');
         })->get();
 
-        return view('PublicDocument', compact('alldocuments', 'search', 'categories', 'categorysearch', 'SearchByuser', 'usersearch'));
+        return view('public-document', compact('alldocuments', 'search', 'categories', 'categorysearch', 'SearchByuser', 'usersearch'));
     }
 
 
 
-    public function PublicDocumentDetail(string $id)
+    public function publicDocumentDetail(string $id)
     {
         $item = Documentation::with('files')->findOrFail($id);
 
@@ -76,7 +76,7 @@ class HomeController extends Controller
         }
 
 
-        return view('PublicDocumentDetail', compact('item'));
+        return view('public-document-detail', compact('item'));
     }
 
 }

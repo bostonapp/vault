@@ -218,12 +218,6 @@ class DocumentationController extends Controller
           // Find the documentation record
         $document = Documentation::findOrFail($id);
 
-        // Check if the authenticated user owns the document
-        // if ($document->user_id !== Auth::user()->id) {
-        //     toastr()->error('You cannot edit other users\' documents.');
-        //     return redirect()->back();
-        // }
-
         // Validate the request
         $request->validate([
             'topic' => ['required'],
@@ -275,10 +269,6 @@ class DocumentationController extends Controller
     {
         $document = Documentation::findOrFail($id);
 
-        // if ($document->user_id !== Auth::user()->id) {
-        //     toastr()->error('You Can Not Delete Other Documents');
-        //     return redirect()->back();
-        // }
 
         foreach ($document->files as $existingFile) {
 
