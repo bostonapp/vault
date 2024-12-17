@@ -49,10 +49,14 @@
                                                         <td>{{ $category->name }}</td>
                                                         <td>{{ $category->created_at->format('M d, Y h:i A') }}</td>
                                                         <td>
+
+                                                            @if ($category->user_id == auth()->user()->id)
                                                             <a href="{{ route('user.category.edit', $category->id) }}"
                                                                 class="btn btn-warning btn-sm">Edit</a>
                                                             <a href="{{ route('user.category.destroy', $category->id) }}"
                                                                 class="delete-item btn btn-danger btn-sm">Delete</a>
+                                                            @endif
+
                                                         </td>
                                                     </tr>
                                                 @endforeach
