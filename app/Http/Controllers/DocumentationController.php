@@ -22,8 +22,10 @@ class DocumentationController extends Controller
         $mytotalpost = Documentation::where('user_id', Auth::user()->id)->count();
         $mytotalpublicpost = Documentation::where('user_id', Auth::user()->id)->where('status', 'public')->count();
         $mytotalprivatepost = Documentation::where('user_id', Auth::user()->id)->where('status', 'private')->count();
+        $totalpost = Documentation::where('is_approved', 'approved')->where('status', 'public')->count();
+        $postrequest = Documentation::where('status', 'public')->where('is_approved', 'pending')->count();
 
-        return view('admin.dashboard.dashboard', compact('mytotalpost', 'mytotalpublicpost', 'mytotalprivatepost'));
+        return view('admin.dashboard.dashboard', compact('mytotalpost', 'mytotalpublicpost', 'mytotalprivatepost', 'totalpost', 'postrequest'));
 
      }
 
